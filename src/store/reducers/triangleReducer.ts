@@ -1,5 +1,6 @@
 import {Triangle} from '../../types';
-import {ADD_TRIANGLE, TriangleActions} from '../actions/triangleActions';
+import {ADD_TRIANGLE, EDIT_TRIANGLE} from '../actions/triangleActions';
+import {TriangleActions} from '../actions/types/triangleActionTypes';
 
 export interface TriangleReducerState {
     triangleList: Triangle[];
@@ -15,6 +16,11 @@ export const triangleReducer = (state: TriangleReducerState = initialState, acti
             return {
                 ...state,
                 triangleList: [...state.triangleList, action.triangle],
+            };
+        case EDIT_TRIANGLE:
+            return {
+                ...state,
+                triangleList: [...state.triangleList.map((triangle) => (triangle.id === action.triangle.id ? action.triangle : triangle))],
             };
         default:
             return state;

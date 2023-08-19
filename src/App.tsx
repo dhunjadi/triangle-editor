@@ -12,6 +12,7 @@ const App = () => {
                 <Route element={<ProtectedRoute />}>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/new" element={<TriangleActionsPage />} />
+                    <Route path="/edit/:id" element={<TriangleActionsPage />} />
                 </Route>
             </Routes>
         </Router>
