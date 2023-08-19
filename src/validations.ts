@@ -1,5 +1,5 @@
 import {ZodType, z} from 'zod';
-import {Point, Triangle} from './types';
+import {LoginForm, Point, Triangle} from './types';
 
 const PointSchema: ZodType<Point> = z.object({
     x: z.number(),
@@ -11,4 +11,9 @@ export const triangleFormValidationSchema: ZodType<Omit<Triangle, 'id'>> = z.obj
     pointA: PointSchema,
     pointB: PointSchema,
     pointC: PointSchema,
+});
+
+export const loginPageValidationSchema: ZodType<LoginForm> = z.object({
+    username: z.string(),
+    password: z.string(),
 });

@@ -1,19 +1,19 @@
-import React from 'react';
-import Triangle from './Triangle';
-import {useSelector} from 'react-redux';
-import {StoreState} from './store/reducers/rootReducer';
-import TriangleForm from './components/TriangleForm';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-const App: React.FC = () => {
-    const {triangleList} = useSelector((state: StoreState) => state.triangleReducer);
+import LoginPage from './pages/LoginPage';
+import ProtectedRoute from './pages/ProtectedRoute';
+import TrianglesPage from './pages/TrianglesPage';
 
+const App = () => {
     return (
-        <div className="App">
-            <TriangleForm />
-            {triangleList.map((triangle) => {
-                return <Triangle key={triangle.id} {...triangle} />;
-            })}
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/" element={<TrianglesPage />} />
+                </Route>
+            </Routes>
+        </Router>
     );
 };
 
