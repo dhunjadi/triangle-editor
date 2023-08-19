@@ -1,4 +1,4 @@
-import {Triangle as TriangleType} from './types';
+import {Triangle as TriangleType} from '../types';
 
 const Triangle = ({pointA, pointB, pointC}: TriangleType) => {
     const adjustedA = {x: pointA.x + 100, y: -pointA.y + 100};

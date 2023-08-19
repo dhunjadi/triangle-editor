@@ -1,8 +1,7 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-
 import LoginPage from './pages/LoginPage';
 import ProtectedRoute from './pages/ProtectedRoute';
-import TrianglesPage from './pages/TrianglesPage';
+import HomePage from './pages/HomePage';
 
 const App = () => {
     return (
@@ -10,7 +9,7 @@ const App = () => {
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
                 <Route element={<ProtectedRoute />}>
-                    <Route path="/" element={<TrianglesPage />} />
+                    <Route path="/" element={<HomePage />} />
                 </Route>
             </Routes>
         </Router>

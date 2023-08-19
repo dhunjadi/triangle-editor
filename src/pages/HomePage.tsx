@@ -1,15 +1,15 @@
-import React from 'react';
 import {StoreState} from '../store/reducers/rootReducer';
 import {useSelector} from 'react-redux';
 import TriangleForm from '../components/TriangleForm';
-import Triangle from '../Triangle';
+import Triangle from '../components/Triangle';
 
-const TrianglesPage = () => {
+const HomePage = () => {
     const {triangleList} = useSelector((state: StoreState) => state.triangleReducer);
+
     return (
-        <div>
-            <div className="p-triangles">
-                <TriangleForm />
+        <div className="p-home">
+            <TriangleForm />
+            <div className="p-home__triangles">
                 {triangleList.map((triangle) => {
                     return <Triangle key={triangle.id} {...triangle} />;
                 })}
@@ -18,4 +18,4 @@ const TrianglesPage = () => {
     );
 };
 
-export default TrianglesPage;
+export default HomePage;
