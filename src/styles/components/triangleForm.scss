@@ -1,4 +1,4 @@
-.c-triangleForm {
+.p-triangleActions {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        margin-top: 2rem;
+        margin: 2rem 0;
 
         &_pair {
             display: flex;

@@ -1,17 +1,37 @@
+import {useCallback, useEffect, useRef} from 'react';
+import Konva from 'konva';
 import {Triangle as TriangleType} from '../types';
 
 const Triangle = ({pointA, pointB, pointC}: TriangleType) => {
-    const adjustedA = {x: pointA.x + 100, y: -pointA.y + 100};
-    const adjustedB = {x: pointB.x + 100, y: -pointB.y + 100};
-    const adjustedC = {x: pointC.x + 100, y: -pointC.y + 100};
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const path = `M${adjustedA.x},${adjustedA.y} L${adjustedB.x},${adjustedB.y} L${adjustedC.x},${adjustedC.y} Z`;
+    const drawTriangle = useCallback(() => {
+        const stage = new Konva.Stage({
+            container: containerRef.current!,
+            width: 100,
+            height: 100,
+        });
 
-    return (
-        <svg>
-            <path d={path} fill="none" stroke="black" />
-        </svg>
-    );
+        const layer = new Konva.Layer();
+        stage.add(layer);
+
+        const triangle = new Konva.Line({
+            points: [+pointA.x, +pointA.y, +pointB.x, +pointB.y, +pointC.x, +pointC.y],
+            fill: 'red',
+            closed: true,
+        });
+
+        layer.add(triangle);
+        stage.draw();
+    }, [pointA.x, pointA.y, pointB.x, pointB.y, pointC.x, pointC.y]);
+
+    useEffect(() => {
+        if (containerRef.current) {
+            drawTriangle();
+        }
+    }, [pointA, pointB, pointC, drawTriangle]);
+
+    return <div className="c-triangle" ref={containerRef} />;
 };
 
 export default Triangle;
