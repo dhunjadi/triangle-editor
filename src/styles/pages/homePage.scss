@@ -1,11 +1,41 @@
 .p-home {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    color: $color-primary;
 
     &__triangles {
+        width: 100%;
+        margin-top: 1rem;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
-        grid-auto-rows: 10rem;
+        grid-template-columns: 1fr;
         gap: 1rem;
-        justify-content: center; /* Horizontally center items */
+        justify-content: center;
+
+        @include screenTablet {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include screenDesktop {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+
+    &__button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+
+        @include screenTablet {
+            padding: 0 35%;
+        }
+
+        @include screenDesktop {
+            padding: 0 40%;
+        }
     }
 }

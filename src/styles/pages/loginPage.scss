@@ -1,0 +1,35 @@
+.p-login {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & form {
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            margin-bottom: 1rem;
+            border-radius: $br-pill;
+        }
+
+        input {
+            width: 100%;
+            border: 0.2rem solid $color-placeholder;
+            border-radius: 999rem;
+            background-color: $color-white;
+            color: $color-primary;
+            padding: 1rem 3rem;
+
+            &::placeholder {
+                color: $color-placeholder;
+            }
+
+            &:focus {
+                outline: none;
+                border: 0.2rem solid $color-primary;
+            }
+        }
+    }
+}

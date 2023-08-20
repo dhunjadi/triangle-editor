@@ -17,7 +17,7 @@ const Triangle = ({pointA, pointB, pointC}: TriangleType) => {
 
         const triangle = new Konva.Line({
             points: [+pointA.x, +pointA.y, +pointB.x, +pointB.y, +pointC.x, +pointC.y],
-            fill: 'red',
+            fill: '#1782c5',
             closed: true,
         });
 

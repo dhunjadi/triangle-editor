@@ -8,6 +8,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import Triangle from '../components/Triangle';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {StoreState} from '../store/reducers/rootReducer';
+import Button from '../components/Button';
 
 const TriangleActionsPage = () => {
     const dispatch = useDispatch();
@@ -45,23 +46,40 @@ const TriangleActionsPage = () => {
             <div className="p-triangleActions__inputs">
                 <div className="p-triangleActions__inputs_pair">
                     <label>Point A</label>
-                    X <input type="number" {...register('pointA.x')} />
-                    Y <input type="number" {...register('pointA.y')} />
+
+                    <span>X:</span>
+                    <input type="number" {...register('pointA.x')} min={0} max={100} />
+
+                    <span>Y:</span>
+                    <input type="number" {...register('pointA.y')} min={0} max={100} />
                 </div>
                 <div className="p-triangleActions__inputs_pair">
                     <label>Point B</label>
-                    X <input type="number" {...register('pointB.x')} />
-                    Y <input type="number" {...register('pointB.y')} />
+
+                    <span>X:</span>
+                    <input type="number" {...register('pointB.x')} min={0} max={100} />
+
+                    <span>Y:</span>
+                    <input type="number" {...register('pointB.y')} min={0} max={100} />
                 </div>
                 <div className="p-triangleActions__inputs_pair">
                     <label>Point C</label>
-                    X <input type="number" {...register('pointC.x')} />
-                    Y <input type="number" {...register('pointC.y')} />
+
+                    <span>X:</span>
+                    <input type="number" {...register('pointC.x')} min={0} max={100} />
+
+                    <span>Y:</span>
+                    <input type="number" {...register('pointC.y')} min={0} max={100} />
                 </div>
             </div>
-            <Triangle id={uuidv4()} pointA={watchFields.pointA} pointB={watchFields.pointB} pointC={watchFields.pointC} />
+            <Triangle
+                id={triangleBeingEdited?.id || uuidv4()}
+                pointA={watchFields.pointA}
+                pointB={watchFields.pointB}
+                pointC={watchFields.pointC}
+            />
             <div className="p-triangleActions__button">
-                <button type="submit">{isEditing ? 'Save' : 'Add to list'}</button>
+                <Button type="submit">{isEditing ? 'Save' : 'Add to list'}</Button>
             </div>
         </form>
     );

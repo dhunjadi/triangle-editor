@@ -6,6 +6,7 @@ import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {userList} from '../data/userList';
 import {userLoginAction} from '../store/actions/userActions';
+import Button from '../components/Button';
 
 const LoginPage = () => {
     const {
@@ -37,9 +38,9 @@ const LoginPage = () => {
                 <input type="password" placeholder="Password" {...register('password')} />
                 {errors.password && <span>{errors.password?.message}</span>}
 
-                <button type="submit" disabled={isDisabled}>
+                <Button type="submit" disabled={isDisabled}>
                     Login
-                </button>
+                </Button>
             </form>
         </div>
     );

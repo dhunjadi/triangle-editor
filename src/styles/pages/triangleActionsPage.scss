@@ -1,0 +1,54 @@
+.p-triangleActions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5%;
+
+    &__inputs {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 2rem 0;
+
+        input {
+            width: 100%;
+            border: 0.1rem solid $color-placeholder;
+            border-radius: 999rem;
+            background-color: $color-white;
+            color: $color-primary;
+            padding: 0.5rem;
+        }
+
+        &_pair {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+
+            span {
+                align-self: center;
+                justify-self: center;
+            }
+        }
+    }
+
+    &__button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+
+        @include screenTablet {
+            padding: 0 35%;
+        }
+
+        @include screenDesktop {
+            padding: 0 40%;
+        }
+    }
+}
