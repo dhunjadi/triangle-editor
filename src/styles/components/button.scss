@@ -9,11 +9,11 @@
     transition: all 0.3s ease-out;
     background-color: $color-primary;
     color: $color-white;
+    opacity: 1;
 
     &.is-disabled {
-        background-color: $color-white;
-        color: $color-primary;
         cursor: default;
+        opacity: 0.7;
 
         &:hover,
         &:active {
@@ -30,5 +30,20 @@
     &:active {
         transform: translateY(0.1rem);
         box-shadow: 0 0.1rem 1rem $color-primary;
+    }
+
+    &.is-danger {
+        background-color: $color-danger;
+        border: 0.2rem solid $color-danger;
+
+        &:hover {
+            transform: translateY(-0.3rem);
+            box-shadow: 0 0.2rem 2rem $color-danger;
+        }
+
+        &:active {
+            transform: translateY(0.1rem);
+            box-shadow: 0 0.1rem 1rem $color-danger;
+        }
     }
 }

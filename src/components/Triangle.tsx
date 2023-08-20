@@ -1,8 +1,11 @@
 import {useCallback, useEffect, useRef} from 'react';
 import Konva from 'konva';
 import {Triangle as TriangleType} from '../types';
+import Button from './Button';
+import {useNavigate} from 'react-router-dom';
 
-const Triangle = ({pointA, pointB, pointC}: TriangleType) => {
+const Triangle = ({id, pointA, pointB, pointC, showButtons}: TriangleType) => {
+    const navigate = useNavigate();
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const drawTriangle = useCallback(() => {
@@ -31,7 +34,17 @@ const Triangle = ({pointA, pointB, pointC}: TriangleType) => {
         }
     }, [pointA, pointB, pointC, drawTriangle]);
 
-    return <div className="c-triangle" ref={containerRef} />;
+    return (
+        <div className="c-triangle">
+            <div className="c-triangle__body" ref={containerRef} />
+            {showButtons && (
+                <div className="c-triangle__buttons">
+                    <Button onClick={() => navigate(`edit/${id}`)}>Edit</Button>
+                    <Button danger>Delete</Button>
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default Triangle;

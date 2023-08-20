@@ -5,6 +5,7 @@ export interface Point {
 
 export interface Triangle {
     id: string;
+    showButtons?: boolean;
     pointA: Point;
     pointB: Point;
     pointC: Point;

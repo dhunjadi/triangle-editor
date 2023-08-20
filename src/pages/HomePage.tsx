@@ -20,12 +20,8 @@ const HomePage = () => {
                     <div className="p-home__triangles">
                         {triangleList.map((triangle) => {
                             return (
-                                <div
-                                    key={triangle.id}
-                                    className="p-home__triangles_triangle"
-                                    onClick={() => navigate(`edit/${triangle.id}`)}
-                                >
-                                    <Triangle {...triangle} />
+                                <div key={triangle.id} className="p-home__triangles_triangle">
+                                    <Triangle {...triangle} showButtons />
                                 </div>
                             );
                         })}

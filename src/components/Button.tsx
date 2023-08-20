@@ -1,16 +1,15 @@
-import React from 'react';
-
-interface ButtonProps {
-    onClick?: () => void;
-    children: React.ReactNode;
-    className?: string;
-    type?: HTMLButtonElement['type'];
-    disabled?: boolean;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    danger?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({onClick, children, className = 'c-button', type = 'button', disabled}) => {
+const Button = ({onClick, children, className = 'c-button', type = 'button', disabled, danger}: ButtonProps) => {
     return (
-        <button className={`${className} ${disabled && 'is-disabled'}`} onClick={onClick} type={type} disabled={disabled}>
+        <button
+            className={`${className} ${disabled && 'is-disabled'} ${danger && 'is-danger'}`}
+            onClick={onClick}
+            type={type}
+            disabled={disabled}
+        >
             {children}
         </button>
     );
