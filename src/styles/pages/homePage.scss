@@ -22,6 +22,11 @@
         @include screenDesktop {
             grid-template-columns: repeat(6, 1fr);
         }
+
+        &_details {
+            display: flex;
+            flex-direction: column;
+        }
     }
 
     &__button {

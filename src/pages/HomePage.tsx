@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import Triangle from '../components/Triangle';
 import {useNavigate} from 'react-router-dom';
 import Button from '../components/Button';
+import {getTriangleArea, getTrianglePerimeter, getTypeByAngles, getTypeBySides} from '../utils';
 
 const HomePage = () => {
     const {triangleList} = useSelector((state: StoreState) => state.triangleReducer);
@@ -27,6 +28,12 @@ const HomePage = () => {
                         {triangleList.map((triangle) => (
                             <div key={triangle.id} className="p-home__triangles_triangle">
                                 <Triangle {...triangle} showButtons />
+                                <div className="p-home__triangles_details">
+                                    <span>Perimeter: {getTrianglePerimeter(triangle)}</span>
+                                    <span>Area: {getTriangleArea(triangle)}</span>
+                                    <span>Angle Type: {getTypeByAngles(triangle)}</span>
+                                    <span>Sides Relationship: {getTypeBySides(triangle)}</span>
+                                </div>
                             </div>
                         ))}
                     </div>
