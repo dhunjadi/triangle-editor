@@ -14,6 +14,7 @@ const TriangleActionsPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {triangleList} = useSelector((state: StoreState) => state.triangleReducer);
+    const {loggedinUser} = useSelector((state: StoreState) => state.userReducer);
     const {id} = useParams();
     const triangleBeingEdited = triangleList.find((triangle) => triangle.id === id);
     const {pathname} = useLocation();
@@ -29,14 +30,17 @@ const TriangleActionsPage = () => {
     const watchFields = watch();
 
     const onSubmit = (formData: Omit<TriangleType, 'id'>) => {
-        const newTriangle: TriangleType = {
-            id: triangleBeingEdited?.id || uuidv4(),
-            pointA: formData.pointA,
-            pointB: formData.pointB,
-            pointC: formData.pointC,
-        };
-        isEditing && id ? dispatch(editTriangleAction({id, ...formData})) : dispatch(addTriangleAction(newTriangle));
-        navigate(-1);
+        if (loggedinUser) {
+            const newTriangle: TriangleType = {
+                id: triangleBeingEdited?.id || uuidv4(),
+                pointA: formData.pointA,
+                pointB: formData.pointB,
+                pointC: formData.pointC,
+                userId: loggedinUser.id,
+            };
+            isEditing && id ? dispatch(editTriangleAction({id, ...formData})) : dispatch(addTriangleAction(newTriangle));
+            navigate(-1);
+        }
     };
 
     const isEditing = pathname.includes('edit');
@@ -77,6 +81,7 @@ const TriangleActionsPage = () => {
                 pointA={watchFields.pointA}
                 pointB={watchFields.pointB}
                 pointC={watchFields.pointC}
+                userId={triangleBeingEdited?.userId || uuidv4()}
             />
             <div className="p-triangleActions__button">
                 <Button type="submit">{isEditing ? 'Save' : 'Add to list'}</Button>

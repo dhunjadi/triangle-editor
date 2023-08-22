@@ -7,6 +7,10 @@
     padding: 0 5%;
     color: $color-primary;
 
+    &__title {
+        margin-top: 2rem;
+    }
+
     &__triangles {
         width: 100%;
         margin-top: 1rem;

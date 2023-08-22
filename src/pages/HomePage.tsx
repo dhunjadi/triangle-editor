@@ -7,6 +7,7 @@ import {getTriangleArea, getTrianglePerimeter, getTypeByAngles, getTypeBySides} 
 
 const HomePage = () => {
     const {triangleList} = useSelector((state: StoreState) => state.triangleReducer);
+    const {loggedinUser} = useSelector((state: StoreState) => state.userReducer);
     const navigate = useNavigate();
     const isTriangleListEmpty = triangleList.length === 0;
 
@@ -16,26 +17,30 @@ const HomePage = () => {
 
     return (
         <div className="p-home">
-            <h2>List of triangles</h2>
+            <div className="p-home__title">
+                <h1>Triangles Editor</h1>
+            </div>
 
             {isTriangleListEmpty ? (
-                <div>
+                <div className="p-home__header">
                     <h3>List is empty!</h3>
                 </div>
             ) : (
                 <div>
                     <div className="p-home__triangles">
-                        {triangleList.map((triangle) => (
-                            <div key={triangle.id} className="p-home__triangles_triangle">
-                                <Triangle {...triangle} showButtons />
-                                <div className="p-home__triangles_details">
-                                    <span>Perimeter: {getTrianglePerimeter(triangle)}</span>
-                                    <span>Area: {getTriangleArea(triangle)}</span>
-                                    <span>Angle Type: {getTypeByAngles(triangle)}</span>
-                                    <span>Sides Relationship: {getTypeBySides(triangle)}</span>
+                        {triangleList
+                            .filter((triangle) => triangle.userId === loggedinUser?.id)
+                            .map((triangle) => (
+                                <div key={triangle.id} className="p-home__triangles_triangle">
+                                    <Triangle {...triangle} showButtons />
+                                    <div className="p-home__triangles_details">
+                                        <span>Perimeter: {getTrianglePerimeter(triangle)}</span>
+                                        <span>Area: {getTriangleArea(triangle)}</span>
+                                        <span>Angle Type: {getTypeByAngles(triangle)}</span>
+                                        <span>Sides Relationship: {getTypeBySides(triangle)}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </div>
                 </div>
             )}

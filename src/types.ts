@@ -9,6 +9,7 @@ export interface Triangle {
     pointA: Point;
     pointB: Point;
     pointC: Point;
+    userId: string;
 }
 
 export interface User {
