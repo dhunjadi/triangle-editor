@@ -19,7 +19,7 @@
             border: 0.2rem solid $color-placeholder;
             border-radius: 999rem;
             background-color: $color-white;
-            color: $color-primary;
+            color: $color-secondary;
             padding: 1rem 3rem;
 
             &::placeholder {
@@ -28,7 +28,7 @@
 
             &:focus {
                 outline: none;
-                border: 0.2rem solid $color-primary;
+                border: 0.2rem solid $color-secondary;
             }
         }
     }

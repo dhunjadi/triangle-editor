@@ -21,7 +21,7 @@ const KonvaTriangle = ({points}: KonvaTriangleProps) => {
 
         const triangle = new Konva.Line({
             points: [+points[0].x, +points[0].y, +points[1].x, +points[1].y, +points[2].x, +points[2].y],
-            fill: '#1782c5',
+            fill: '#264284',
             closed: true,
         });
 

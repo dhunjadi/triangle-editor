@@ -84,7 +84,9 @@ const TriangleActionsPage = () => {
                 userId={triangleBeingEdited?.userId || uuidv4()}
             />
             <div className="p-triangleActions__button">
-                <Button type="submit">{isEditing ? 'Save' : 'Add to list'}</Button>
+                <Button secondary type="submit">
+                    {isEditing ? 'Save' : 'Add to list'}
+                </Button>
             </div>
         </form>
     );

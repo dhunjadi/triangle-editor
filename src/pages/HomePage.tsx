@@ -4,6 +4,7 @@ import Triangle from '../components/Triangle';
 import {useNavigate} from 'react-router-dom';
 import Button from '../components/Button';
 import {getTriangleArea, getTrianglePerimeter, getTypeByAngles, getTypeBySides} from '../utils';
+import Navbar from '../components/Navbar';
 
 const HomePage = () => {
     const {triangleList} = useSelector((state: StoreState) => state.triangleReducer);
@@ -17,9 +18,7 @@ const HomePage = () => {
 
     return (
         <div className="p-home">
-            <div className="p-home__title">
-                <h1>Triangles Editor</h1>
-            </div>
+            <Navbar />
 
             {isTriangleListEmpty ? (
                 <div className="p-home__header">

@@ -12,13 +12,14 @@
         justify-content: space-evenly;
         align-items: center;
         margin: 2rem 0;
+        color: $color-primary;
 
         input {
             width: 100%;
             border: 0.1rem solid $color-placeholder;
             border-radius: 999rem;
             background-color: $color-white;
-            color: $color-primary;
+            color: $color-secondary;
             padding: 0.5rem;
         }
 

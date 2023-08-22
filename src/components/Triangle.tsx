@@ -14,7 +14,9 @@ const Triangle = ({id, pointA, pointB, pointC, showButtons}: TriangleType) => {
             <KonvaTriangle points={[pointA, pointB, pointC]} />
             {showButtons && (
                 <div className="c-triangle__buttons">
-                    <Button onClick={() => navigate(`edit/${id}`)}>Edit</Button>
+                    <Button secondary onClick={() => navigate(`edit/${id}`)}>
+                        Edit
+                    </Button>
                     <Button danger onClick={() => dispatch(deleteTriangleAction(id))}>
                         Delete
                     </Button>
