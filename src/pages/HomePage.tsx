@@ -3,8 +3,9 @@ import {useSelector} from 'react-redux';
 import Triangle from '../components/Triangle';
 import {useNavigate} from 'react-router-dom';
 import Button from '../components/Button';
-import {getTriangleArea, getTrianglePerimeter, getTypeByAngles, getTypeBySides} from '../utils';
 import Navbar from '../components/Navbar';
+import {TrianglePoints} from '../types';
+import {getTrianglePerimeter, getTriangleArea, getTypeByAngles, getTypeBySides} from '../utils';
 
 const HomePage = () => {
     const {triangleList} = useSelector((state: StoreState) => state.triangleReducer);
@@ -29,17 +30,22 @@ const HomePage = () => {
                     <div className="p-home__triangles">
                         {triangleList
                             .filter((triangle) => triangle.userId === loggedinUser?.id)
-                            .map((triangle) => (
-                                <div key={triangle.id} className="p-home__triangles_triangle">
-                                    <Triangle {...triangle} showButtons />
-                                    <div className="p-home__triangles_details">
-                                        <span>Perimeter: {getTrianglePerimeter(triangle)}</span>
-                                        <span>Area: {getTriangleArea(triangle)}</span>
-                                        <span>Angle Type: {getTypeByAngles(triangle)}</span>
-                                        <span>Sides Relationship: {getTypeBySides(triangle)}</span>
+                            .map((triangle) => {
+                                const {pointA, pointB, pointC} = triangle;
+                                const points: TrianglePoints = [pointA, pointB, pointC];
+
+                                return (
+                                    <div key={triangle.id} className="p-home__triangles_triangle">
+                                        <Triangle {...triangle} showButtons />
+                                        <div className="p-home__triangles_details">
+                                            <span>Perimeter: {getTrianglePerimeter(points)}</span>
+                                            <span>Area: {getTriangleArea(points)}</span>
+                                            <span>Angle Type: {getTypeByAngles(points)}</span>
+                                            <span>Sides Relationship: {getTypeBySides(points)}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                     </div>
                 </div>
             )}

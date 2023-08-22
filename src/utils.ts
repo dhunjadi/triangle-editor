@@ -1,4 +1,4 @@
-import {Point, Triangle} from './types';
+import {Point, TrianglePoints} from './types';
 
 const calculateDistance = (p1: Point, p2: Point): number => {
     const dx = parseFloat(p1.x) - parseFloat(p2.x);
@@ -13,26 +13,26 @@ const calculateAngle = (p1: Point, p2: Point, p3: Point): number => {
     return Math.acos((a * a + b * b - c * c) / (2 * a * b)) * (180 / Math.PI);
 };
 
-export const getTrianglePerimeter = (triangle: Triangle): number => {
-    const sideA = calculateDistance(triangle.pointA, triangle.pointB);
-    const sideB = calculateDistance(triangle.pointB, triangle.pointC);
-    const sideC = calculateDistance(triangle.pointC, triangle.pointA);
+export const getTrianglePerimeter = (points: TrianglePoints): number => {
+    const sideA = calculateDistance(points[0], points[1]);
+    const sideB = calculateDistance(points[1], points[2]);
+    const sideC = calculateDistance(points[2], points[0]);
     return parseFloat((sideA + sideB + sideC).toFixed(2));
 };
 
-export const getTriangleArea = (triangle: Triangle): number => {
-    const sideA = calculateDistance(triangle.pointA, triangle.pointB);
-    const sideB = calculateDistance(triangle.pointB, triangle.pointC);
-    const sideC = calculateDistance(triangle.pointC, triangle.pointA);
+export const getTriangleArea = (points: TrianglePoints): number => {
+    const sideA = calculateDistance(points[0], points[1]);
+    const sideB = calculateDistance(points[1], points[2]);
+    const sideC = calculateDistance(points[2], points[0]);
     const s = (sideA + sideB + sideC) / 2;
     return parseFloat(Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC)).toFixed(2));
 };
 
-export const getTypeByAngles = (triangle: Triangle): string => {
+export const getTypeByAngles = (points: TrianglePoints): string => {
     const angles = [
-        calculateAngle(triangle.pointA, triangle.pointB, triangle.pointC),
-        calculateAngle(triangle.pointB, triangle.pointC, triangle.pointA),
-        calculateAngle(triangle.pointC, triangle.pointA, triangle.pointB),
+        calculateAngle(points[0], points[1], points[2]),
+        calculateAngle(points[1], points[2], points[0]),
+        calculateAngle(points[2], points[0], points[1]),
     ].sort((x, y) => x - y);
 
     if (angles[2] === 90) return 'Right';
@@ -40,11 +40,11 @@ export const getTypeByAngles = (triangle: Triangle): string => {
     return 'Obtuse';
 };
 
-export const getTypeBySides = (triangle: Triangle): string => {
+export const getTypeBySides = (points: TrianglePoints): string => {
     const sides = [
-        calculateDistance(triangle.pointA, triangle.pointB),
-        calculateDistance(triangle.pointB, triangle.pointC),
-        calculateDistance(triangle.pointC, triangle.pointA),
+        calculateDistance(points[0], points[1]),
+        calculateDistance(points[1], points[2]),
+        calculateDistance(points[2], points[0]),
     ].sort((x, y) => x - y);
 
     if (sides[0] === sides[2]) return 'Equilateral';

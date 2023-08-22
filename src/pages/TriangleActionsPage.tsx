@@ -9,6 +9,7 @@ import Triangle from '../components/Triangle';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {StoreState} from '../store/reducers/rootReducer';
 import Button from '../components/Button';
+import {getTrianglePerimeter, getTriangleArea, getTypeByAngles, getTypeBySides} from '../utils';
 
 const TriangleActionsPage = () => {
     const dispatch = useDispatch();
@@ -29,6 +30,8 @@ const TriangleActionsPage = () => {
 
     const watchFields = watch();
 
+    const pointsParams = watch(['pointA', 'pointB', 'pointC']);
+
     const onSubmit = (formData: Omit<TriangleType, 'id'>) => {
         if (loggedinUser) {
             const newTriangle: TriangleType = {
@@ -38,7 +41,9 @@ const TriangleActionsPage = () => {
                 pointC: formData.pointC,
                 userId: loggedinUser.id,
             };
-            isEditing && id ? dispatch(editTriangleAction({id, ...formData})) : dispatch(addTriangleAction(newTriangle));
+            isEditing && id
+                ? dispatch(editTriangleAction({...formData, id, userId: loggedinUser.id}))
+                : dispatch(addTriangleAction(newTriangle));
             navigate(-1);
         }
     };
@@ -83,6 +88,14 @@ const TriangleActionsPage = () => {
                 pointC={watchFields.pointC}
                 userId={triangleBeingEdited?.userId || uuidv4()}
             />
+
+            <div className="p-home__triangles_details">
+                <span>Perimeter: {getTrianglePerimeter(pointsParams)}</span>
+                <span>Area: {getTriangleArea(pointsParams)}</span>
+                <span>Angle Type: {getTypeByAngles(pointsParams)}</span>
+                <span>Sides Relationship: {getTypeBySides(pointsParams)}</span>
+            </div>
+
             <div className="p-triangleActions__button">
                 <Button secondary type="submit">
                     {isEditing ? 'Save' : 'Add to list'}

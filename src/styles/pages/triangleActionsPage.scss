@@ -38,18 +38,19 @@
         }
     }
 
-    &__button {
+    &__buttons {
         width: 100%;
         display: flex;
         justify-content: center;
         margin-top: 1rem;
+        gap: 1rem;
 
         @include screenTablet {
-            padding: 0 35%;
+            padding: 0 20%;
         }
 
         @include screenDesktop {
-            padding: 0 40%;
+            padding: 0 30%;
         }
     }
 }

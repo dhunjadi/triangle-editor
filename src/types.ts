@@ -12,6 +12,8 @@ export interface Triangle {
     userId: string;
 }
 
+export type TrianglePoints = [Point, Point, Point];
+
 export interface User {
     id: string;
     username: string;
