@@ -22,9 +22,9 @@ const TriangleActionsPage = () => {
     const {register, handleSubmit, watch} = useForm<TriangleType>({
         resolver: zodResolver(triangleFormValidationSchema),
         defaultValues: {
-            pointA: {x: triangleBeingEdited?.pointA.x || '0', y: triangleBeingEdited?.pointA.y || '100'},
-            pointB: {x: triangleBeingEdited?.pointB.x || '50', y: triangleBeingEdited?.pointB.y || '0'},
-            pointC: {x: triangleBeingEdited?.pointC.x || '100', y: triangleBeingEdited?.pointC.y || '100'},
+            pointA: {x: triangleBeingEdited?.pointA.x || '-100', y: triangleBeingEdited?.pointA.y || '-100'},
+            pointB: {x: triangleBeingEdited?.pointB.x || '100', y: triangleBeingEdited?.pointB.y || '-100'},
+            pointC: {x: triangleBeingEdited?.pointC.x || '0', y: triangleBeingEdited?.pointC.y || '100'},
         },
     });
 
@@ -57,28 +57,28 @@ const TriangleActionsPage = () => {
                     <label>Point A</label>
 
                     <span>X:</span>
-                    <input type="number" {...register('pointA.x')} min={0} max={100} />
+                    <input type="number" {...register('pointA.x')} min={-100} max={100} />
 
                     <span>Y:</span>
-                    <input type="number" {...register('pointA.y')} min={0} max={100} />
+                    <input type="number" {...register('pointA.y')} min={-100} max={100} />
                 </div>
                 <div className="p-triangleActions__inputs_pair">
                     <label>Point B</label>
 
                     <span>X:</span>
-                    <input type="number" {...register('pointB.x')} min={0} max={100} />
+                    <input type="number" {...register('pointB.x')} min={-100} max={100} />
 
                     <span>Y:</span>
-                    <input type="number" {...register('pointB.y')} min={0} max={100} />
+                    <input type="number" {...register('pointB.y')} min={-100} max={100} />
                 </div>
                 <div className="p-triangleActions__inputs_pair">
                     <label>Point C</label>
 
                     <span>X:</span>
-                    <input type="number" {...register('pointC.x')} min={0} max={100} />
+                    <input type="number" {...register('pointC.x')} min={-100} max={100} />
 
                     <span>Y:</span>
-                    <input type="number" {...register('pointC.y')} min={0} max={100} />
+                    <input type="number" {...register('pointC.y')} min={-100} max={100} />
                 </div>
             </div>
             <Triangle
@@ -96,10 +96,12 @@ const TriangleActionsPage = () => {
                 <span>Sides Relationship: {getTypeBySides(pointsParams)}</span>
             </div>
 
-            <div className="p-triangleActions__button">
-                <Button secondary type="submit">
-                    {isEditing ? 'Save' : 'Add to list'}
+            <div className="p-triangleActions__buttons">
+                <Button secondary type="button" onClick={() => navigate(-1)}>
+                    Cancel
                 </Button>
+
+                <Button type="submit">{isEditing ? 'Save' : 'Add to list'}</Button>
             </div>
         </form>
     );
