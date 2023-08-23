@@ -6,6 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = ({onClick, children, className = 'c-button', type = 'button', disabled, danger, secondary}: ButtonProps) => {
     return (
         <button
+            data-html2canvas-ignore
             className={`${className} ${disabled && 'is-disabled'} ${danger && 'is-danger'} ${secondary && 'is-secondary'}`}
             onClick={onClick}
             type={type}
