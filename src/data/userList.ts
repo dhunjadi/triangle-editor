@@ -8,7 +8,12 @@ export const userList: User[] = [
     },
     {
         id: '2',
-        username: 'admin2',
-        password: 'admin2',
+        username: 'randomUser',
+        password: 'randomPassword',
+    },
+    {
+        id: '3',
+        username: 'newUser',
+        password: 'newUsersPassword',
     },
 ];

@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 5%;
+    padding: 0 5% 2rem 5%;
     color: $color-secondary;
 
     &__title {
@@ -32,6 +32,10 @@
             display: flex;
             flex-direction: column;
             color: $color-primary;
+
+            button {
+                margin-top: 1rem;
+            }
         }
     }
 

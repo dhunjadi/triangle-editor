@@ -19,8 +19,8 @@ const HomePage = () => {
         navigate('new');
     };
 
-    const handleExportDetails = () => {
-        const content = document.querySelector('.p-home__triangles_triangle') as HTMLElement;
+    const handleDownloadDetails = (id: string) => {
+        const content = document.getElementById(`triangle-container-${id}`) as HTMLElement;
 
         html2canvas(content, {logging: true, useCORS: true}).then((canvas) => {
             const imgWidth = 200;
@@ -50,14 +50,14 @@ const HomePage = () => {
                                 const points: TrianglePoints = [pointA, pointB, pointC];
 
                                 return (
-                                    <div key={triangle.id} className="p-home__triangles_triangle">
+                                    <div key={triangle.id} id={`triangle-container-${triangle.id}`} className="p-home__triangles_triangle">
                                         <Triangle {...triangle} showButtons />
                                         <div className="p-home__triangles_details">
                                             <span>Perimeter: {getTrianglePerimeter(points)}</span>
                                             <span>Area: {getTriangleArea(points)}</span>
                                             <span>Angle Type: {getTypeByAngles(points)}</span>
                                             <span>Sides Relationship: {getTypeBySides(points)}</span>
-                                            <Button onClick={() => handleExportDetails()}>Download details</Button>
+                                            <Button onClick={() => handleDownloadDetails(triangle.id)}>Download details</Button>
                                         </div>
                                     </div>
                                 );
