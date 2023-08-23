@@ -6,7 +6,7 @@ const PointSchema: ZodType<Point> = z.object({
     y: z.string(),
 });
 
-export const triangleFormValidationSchema: ZodType<Omit<Triangle, 'id'>> = z.object({
+export const triangleFormValidationSchema: ZodType<Omit<Triangle, 'id' | 'userId'>> = z.object({
     pointA: PointSchema,
     pointB: PointSchema,
     pointC: PointSchema,

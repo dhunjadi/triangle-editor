@@ -31,5 +31,9 @@
                 border: 0.2rem solid $color-secondary;
             }
         }
+
+        strong {
+            color: $color-danger;
+        }
     }
 }

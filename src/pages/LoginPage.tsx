@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 import {userList} from '../data/userList';
 import {userLoginAction} from '../store/actions/userActions';
 import Button from '../components/Button';
+import {useState} from 'react';
 
 const LoginPage = () => {
     const {
@@ -18,6 +19,7 @@ const LoginPage = () => {
     const watchFields = watch();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [error, setError] = useState<boolean>(false);
 
     const isDisabled = !watchFields.username || !watchFields.password;
 
@@ -28,7 +30,10 @@ const LoginPage = () => {
             dispatch(userLoginAction(found));
             navigate('/');
         }
+
+        setError(true);
     };
+
     return (
         <div className="p-login">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -37,6 +42,8 @@ const LoginPage = () => {
 
                 <input type="password" placeholder="Password" {...register('password')} />
                 {errors.password && <span>{errors.password?.message}</span>}
+
+                {error && <strong>Wrong username or password!</strong>}
 
                 <Button type="submit" disabled={isDisabled}>
                     Login
